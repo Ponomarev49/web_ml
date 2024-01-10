@@ -104,8 +104,8 @@ def page_data_visualization():
         fig_hist = plt.figure()
         sns.histplot(data=data, x=feature, kde=True)
         plt.title(f"Гистограмма для {feature}")
-        plt.savefig(f"hist_{feature}.png")
-        st.image(f"hist_{feature}.png")
+        plt.savefig(f"Images/Hist/hist_{feature}.png")
+        st.image(f"Images/Hist/hist_{feature}.png")
 
     st.subheader("Боксплоты")
     columns = list(data.columns)
@@ -114,14 +114,14 @@ def page_data_visualization():
         plt.subplot(4, 4, columns.index(column)+1)
         sns.boxplot(data=data, y=column)
         plt.title(column)
-    plt.savefig("boxplot.png")
-    st.image("boxplot.png")
+    plt.savefig("Images/boxplot.png")
+    st.image("Images/boxplot.png")
 
     st.subheader("Матрица диаграмм рассеяния")
     matrix_features = ['bomb_planted', 'ct_players_alive', 't_players_alive']
     scatter_matrix_fig = scatter_matrix(data[matrix_features], figsize=(12, 12), alpha=0.8, diagonal='hist')
-    plt.savefig("scatter_matrix.png")
-    st.image("scatter_matrix.png")
+    plt.savefig("Images/scatter_matrix.png")
+    st.image("Images/scatter_matrix.png")
 
 
 # Страница с инференсом моделей
