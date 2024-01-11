@@ -4,6 +4,7 @@ from keras.models import load_model
 from sklearn.model_selection import train_test_split
 import pickle
 import author
+import sklearn.metrics._dist_metrics
 
 X = author.data.drop(columns=['bomb_planted'])
 y = author.data['bomb_planted']
