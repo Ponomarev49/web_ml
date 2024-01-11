@@ -5,24 +5,7 @@ import info
 import models
 import visualisation
 
-# import pickle
-# import seaborn as sns
-# import matplotlib.pyplot as plt
-# from sklearn.preprocessing import StandardScaler
-# from sklearn.model_selection import train_test_split
-# from sklearn.metrics import accuracy_score
-# from pandas.plotting import scatter_matrix
-# from keras.models import load_model
-
-
 st.set_option('deprecation.showPyplotGlobalUse', False)
-
-# Загрузка датасета
-data = pd.read_csv('Data/cs_go.csv')
-if 'Unnamed: 0' in data.columns:
-    data = data.drop(['Unnamed: 0'], axis=1)
-
-st.title('Расчётно графичесикая работа ML')
 
 # Навигация
 st.sidebar.title('Навигация:')
@@ -31,6 +14,14 @@ page = st.sidebar.radio(
     ("Разработчик", "Датасет", "Визуализация", "Инференс модели"),
     key="navig"
 )
+
+# Загрузка датасета
+data = pd.read_csv('Data/cs_go.csv')
+if 'Unnamed: 0' in data.columns:
+    data = data.drop(['Unnamed: 0'], axis=1)
+data.drop(columns=['bomb_planted'])
+
+st.title('Расчётно графичесикая работа ML')
 
 
 # Информация о разработчике
@@ -42,7 +33,6 @@ def page_developer():
     with col1:
         st.header("Фотография")
         st.image("Images/my_photo.png")  # Укажите путь к вашей фотографии
-
     with col2:
         st.header("Контактная информация")
         st.write("ФИО: Пономарев Михаил Евгеньевич")

@@ -1,14 +1,9 @@
 import streamlit as st
 import pandas as pd
-from keras.models import load_model
-from sklearn.model_selection import train_test_split
 import pickle
+from keras.models import load_model
+import numpy as np
 import author
-import sklearn.metrics._dist_metrics
-
-X = author.data.drop(columns=['bomb_planted'])
-y = author.data['bomb_planted']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 
 # Страница с инференсом моделей
@@ -91,13 +86,3 @@ def page_predictions():
             kmeans_pred = kmeans_model.predict(predict_input)[0]
             pred.append(int(kmeans_pred))
             st.write(f"{bagging_pred}")
-
-# Загрузка моделей
-# def models():
-#     model1 = pickle.load(open('Models/knn.pkl', 'rb'))
-#     model2 = pickle.load(open('Models/kmeans.pkl', 'rb'))
-#     model3 = pickle.load(open('Models/grad_boost.pkl', 'rb'))
-#     model4 = pickle.load(open('Models/bagging.pkl', 'rb'))
-#     model5 = pickle.load(open('Models/stacking.pkl', 'rb'))
-#     model6 = load_model('Models/bin_class.h5')
-#     return model1, model2, model3, model4, model5, model6
