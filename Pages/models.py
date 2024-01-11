@@ -4,7 +4,6 @@ from keras.models import load_model
 from sklearn.model_selection import train_test_split
 import pickle
 import author
-import numpy as np
 
 X = author.data.drop(columns=['bomb_planted'])
 y = author.data['bomb_planted']
@@ -50,7 +49,7 @@ def page_predictions():
 
         if st.button('Сделать предсказание'):
             with open('Models/knn.pkl', 'rb') as file:
-                lr = pickle.load(file)
+                knn = pickle.load(file)
             with open('Models/bagging.pkl', 'rb') as file:
                 bagging_model = pickle.load(file)
             with open('Models/grad_boost.pkl', 'rb') as file:
@@ -63,7 +62,7 @@ def page_predictions():
 
             st.header("KNN:")
             pred = []
-            knn_pred = lr.predict(predict_input)[0]
+            knn_pred = knn.predict(predict_input)[0]
             pred.append(int(knn_pred))
             st.write(f"{knn_pred}")
 
